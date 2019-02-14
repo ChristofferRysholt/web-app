@@ -13,7 +13,7 @@ function hideAllPages() {
 // show page or tab
 function showPage(pageId) {
   hideAllPages();
-  document.querySelector(`#${pageId}`).style.display = "block";
+  document.querySelector(`#${pageId}`).style.display = "grid";
   setActiveTab(pageId);
 }
 
@@ -39,10 +39,10 @@ function setActiveTab(pageId) {
 }
 
 // ---------- Fetch data from data sources ---------- //
-/*
-Fetches pages json data from my headless cms
-*/
-fetch("http://headlesscms.cederdorff.com/wp-json/wp/v2/pages?_embed")
+
+// Fetches pages json data from headless cms
+
+fetch("http://rysholt.com/wordpress/wp-json/wp/v2/pages?_embed")
   .then(function(response) {
     return response.json();
   })
@@ -60,8 +60,8 @@ function appendPages(pages) {
     addPage(page);
   }
   setDefaultPage(pages[0].slug); // selecting the first page in the array of pages
-  getPersons();
-  getTeachers();
+  getMovies();
+  getCategories();
 }
 
 // appends menu item to the nav menu
@@ -83,67 +83,57 @@ function addPage(page) {
   </section>
   `;
 }
+// Fetches post data from my headless cms
 
-/*
-Fetches post data from my headless cms
-*/
-function getPersons() {
-  fetch('http://headlesscms.cederdorff.com/wp-json/wp/v2/posts?_embed&categories=3')
+function getMovies() {
+  fetch('http://rysholt.com/wordpress/wp-json/wp/v2/posts?_embed')
     .then(function(response) {
       return response.json();
     })
-    .then(function(persons) {
-      appendPersons(persons);
+    .then(function(movies) {
+      appendMovies(movies);
     });
 }
-/*
-Appends json data to the DOM
-*/
-function appendPersons(persons) {
+
+// Appends json data to the DOM
+
+function appendMovies(movies) {
   let htmlTemplate = "";
-  for (let person of persons) {
+  for (let movie of movies) {
     console.log();
     htmlTemplate += `
       <article>
-        <img src="${getFeaturedImageUrl(person)}">
-        <h4>${person.title.rendered}</h4>
-        <p>${person.acf.age} years old</p>
-        <p>Hair color: ${person.acf.hairColor}</p>
-        <p>Relation: ${person.acf.relation}</p>
+      <img src="${getFeaturedImageUrl(movie)}">
+        <h3>${movie.title.rendered}</h3>
+        <p>${movie.content.rendered}</p>
       </article>
     `;
   }
-  document.querySelector("#family-members").innerHTML += htmlTemplate;
+  document.querySelector("#forside").innerHTML += htmlTemplate;
 }
 
-/*
-Fetches post data from my headless cms
-*/
-function getTeachers() {
-  fetch("http://headlesscms.cederdorff.com/wp-json/wp/v2/posts?_embed&categories=2")
+function getCategories() {
+  fetch('http://rysholt.com/wordpress/wp-json/wp/v2/categories')
     .then(function(response) {
       return response.json();
     })
-    .then(function(teachers) {
-      appendTeachers(teachers);
+    .then(function(categories) {
+      appendCategories(categories);
     });
 }
 
-// appends teachers
-function appendTeachers(teachers) {
+
+function appendCategories(categories) {
   let htmlTemplate = "";
-  for (let teacher of teachers) {
+  for (let category of categories) {
+    console.log();
     htmlTemplate += `
-    <article>
-      <img src="${getFeaturedImageUrl(teacher)}">
-      <h3>${teacher.title.rendered}</h3>
-      ${teacher.content.rendered}
-      <p><a href="mailto:${teacher.acf.email}">${teacher.acf.email}</a></p>
-      <p><a href="tel:${teacher.acf.phone}">${teacher.acf.phone}</a></p>
-    </article>
-     `;
+      <article>
+        <h3>${category.name}</h3>
+      </article>
+    `;
   }
-  document.querySelector("#teachers").innerHTML += htmlTemplate;
+  document.querySelector("#kategorier").innerHTML += htmlTemplate;
 }
 
 // returns the source url of the featured image of given post or page
