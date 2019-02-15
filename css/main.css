@@ -1,12 +1,114 @@
 /* ---------- root variables ---------- */
 :root {
   --background-dark: rgb(30,30,30);
+  --top-color: linear-gradient(to right, crimson, crimson, #720000);
   --green: crimson;
   --light-green: rgb(10,10,10);
   --light-grey: #f1f1f4;
   --text-color-light: #f1f1f1;
   --text-color-dark: #333;
 }
+
+/* ---------- spinner --------------- */
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid crimson;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+/* Carrausel */
+
+
+.scroll {
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.example-one-header {
+    border-radius: 3px;
+}
+
+.nav-item {
+    padding: 1em 1.2em 1em 1.2em;
+    margin-top: 2.87em;
+    color: #999;
+}
+
+.nav-item:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.caractive {
+    color: #fff;
+}
+
+.nav-item {
+    text-align: left;
+    padding-top: 1.7em;
+    padding-bottom: -2em;
+    font-size: 1.1em;
+    text-transform: uppercase;
+}
+
+.nav-item,
+.vertical-align-middle {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.scroll::-webkit-scrollbar {
+    display: none;
+}
+
+
 
 /* ---------- general styling ---------- */
 html {
@@ -36,7 +138,7 @@ img {
 
 /* ---------- topbar styling ---------- */
 .topbar {
-  background-color: var(--green);
+  background-image: var(--top-color);
   color: var(--text-color-light);
   padding: 13.5px;
   text-transform: uppercase;
@@ -94,7 +196,6 @@ img {
   background: var(--background-dark);
   animation: fadeIn 0.4s;
   /* padding equals height of tabbar and topbar */
-  padding: 55px 0;
 }
 
 /* ---------- logo styling ---------- */
@@ -115,14 +216,33 @@ img {
     opacity: 1
   }
 }
-
-/* ---------- article styling ---------- */
-#my-teachers article {
-  margin: 0 0 2em;
-}
 @media only screen and (min-width: 1000px) {
-  #forside {
+ #forside {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     grid-gap: 2%;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 2%;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+
+  }
+
+  /*
+ .grid-posters{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 2%;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+  }
+*/
+  article {
+    display: grid;
+    background-color: white;
+    color: black;
   }

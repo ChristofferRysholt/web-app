@@ -1,7 +1,6 @@
 "use strict";
 
 // ---------- default SPA Web App setup ---------- //
-
 // hide all pages
 function hideAllPages() {
   let pages = document.querySelectorAll(".page");
@@ -13,6 +12,7 @@ function hideAllPages() {
 // show page or tab
 function showPage(pageId) {
   hideAllPages();
+  console.log(pageId);
   document.querySelector(`#${pageId}`).style.display = "grid";
   setActiveTab(pageId);
 }
@@ -50,9 +50,9 @@ fetch("http://rysholt.com/wordpress/wp-json/wp/v2/pages?_embed")
     appendPages(pages);
   });
 
-/*
-Appends and generate pages
-*/
+
+// Appends and generate pages
+
 function appendPages(pages) {
   var menuTemplate = "";
   for (let page of pages) {
@@ -64,12 +64,25 @@ function appendPages(pages) {
   getCategories();
 }
 
+/*
+uden forside
+appends menu item to the nav menu
+
+function addMenuItem(page) {
+  console.log(page.slug);
+  if (page.slug != "forside"){
+  document.querySelector("#menu").innerHTML += `
+  <a href="#${page.slug}" onclick="showPage('${page.slug}')">${page.title.rendered}</a>
+  `;
+  }
+}
+*/
+
 // appends menu item to the nav menu
 function addMenuItem(page) {
   document.querySelector("#menu").innerHTML += `
   <a href="#${page.slug}" onclick="showPage('${page.slug}')">${page.title.rendered}</a>
   `;
-
 }
 
 // appends page section to the DOM
@@ -83,8 +96,19 @@ function addPage(page) {
   </section>
   `;
 }
-// Fetches post data from my headless cms
 
+function addCategory(category) {
+  document.querySelector("#pages").innerHTML += `
+  <section id="${category.slug}" class="page">
+    <header class="topbar">
+      <h2>${category.name}</h2>
+    </header>
+    <section class="container"></section>
+  </section>
+  `;
+}
+
+// Fetches post data from headless cms
 function getMovies() {
   fetch('http://rysholt.com/wordpress/wp-json/wp/v2/posts?_embed')
     .then(function(response) {
@@ -96,7 +120,6 @@ function getMovies() {
 }
 
 // Appends json data to the DOM
-
 function appendMovies(movies) {
   let htmlTemplate = "";
   for (let movie of movies) {
@@ -112,6 +135,23 @@ function appendMovies(movies) {
   document.querySelector("#forside").innerHTML += htmlTemplate;
 }
 
+
+// Appends json data to the DOM
+function appendCategoriesMovies(movies,slug) {
+  let htmlTemplate = "";
+  for (let movie of movies) {
+    console.log();
+    htmlTemplate += `
+      <article>
+      <img src="${getFeaturedImageUrl(movie)}">
+        <h3>${movie.title.rendered}</h3>
+        <p>${movie.content.rendered}</p>
+      </article>
+    `;
+  }
+  document.querySelector("#"+ slug + " .container").innerHTML = htmlTemplate;
+}
+
 function getCategories() {
   fetch('http://rysholt.com/wordpress/wp-json/wp/v2/categories')
     .then(function(response) {
@@ -122,19 +162,36 @@ function getCategories() {
     });
 }
 
-
 function appendCategories(categories) {
   let htmlTemplate = "";
   for (let category of categories) {
-    console.log();
+    console.log(category);
+    addCategory(category)
     htmlTemplate += `
       <article>
-        <h3>${category.name}</h3>
+        <h3 onclick="showCategory('${category.slug}','${category.id}')">${category.name}</h3>
       </article>
     `;
   }
-  document.querySelector("#kategorier").innerHTML += htmlTemplate;
+  document.querySelector("#genrer").innerHTML += htmlTemplate;
 }
+
+function showCategory(slug,id) {
+  console.log(slug,id);
+  showPage(slug);
+
+  fetch('http://rysholt.com/wordpress/wp-json/wp/v2/posts?_embed&categories='+id)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(movies) {
+    console.log(slug);
+    appendCategoriesMovies(movies,slug);
+  });
+}
+
+
+
 
 // returns the source url of the featured image of given post or page
 function getFeaturedImageUrl(post) {
@@ -143,4 +200,15 @@ function getFeaturedImageUrl(post) {
     imageUrl = post._embedded['wp:featuredmedia'][0].source_url;
   }
   return imageUrl;
+}
+
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPageSpinner, 1500);
+}
+
+function showPageSpinner() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "grid";
 }
