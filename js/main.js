@@ -128,7 +128,12 @@ function appendMovies(movies) {
       <article>
       <img src="${getFeaturedImageUrl(movie)}">
         <h3>${movie.title.rendered}</h3>
-        <p>${movie.content.rendered}</p>
+        <p>Udgivelsesdato: ${movie.acf.udgivelses_dato}</p>
+        <p>Aldersgrænse: ${movie.acf.age_restriction}</p>
+        <p>Genre: ${movie.acf.genre}</p>
+        <iframe width="100% auto" height="auto" frameborder="0" allowfullscreen="allowfullscreen" gyroscope; picture-in-picture"
+          src="https://youtube.com/embed/${movie.acf.trailer}">
+        </iframe>
       </article>
     `;
   }

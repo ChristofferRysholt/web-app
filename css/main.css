@@ -205,6 +205,10 @@ img {
   max-width: 300px;
 }
 
+.trailer_yt {
+  width: 100% auto;
+}
+
 /* ---------- animations ---------- */
 /* fade in */
 @keyframes fadeIn {
