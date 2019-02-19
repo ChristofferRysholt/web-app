@@ -190,15 +190,17 @@ img {
 /* ---------- topbar styling ---------- */
 
 .topbar {
-    background-image: var(--top-color);
+    background-color: crimson;
     color: var(--text-color-light);
     text-transform: uppercase;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
     border-bottom: dotted #720000 2px;
+}
+.topbar a {
+  position: relative;
 }
 
 .topbar h2 {
@@ -216,7 +218,6 @@ img {
 /* ---------- tabbar styling ---------- */
 
 .tabbar {
-    display: none;
     background-image: var(--green);
     position: fixed;
     bottom: 0;

@@ -80,8 +80,8 @@ function addMenuItem(page) {
 
 // appends menu item to the nav menu
 function addMenuItem(page) {
-    document.querySelector("#menu").innerHTML += `
-  <a href="#${page.slug}" onclick="showPage('${page.slug}')">${page.title.rendered}</a>
+    document.querySelector(".topbar").innerHTML += `
+  <a href="#${page.slug}" onclick="showPage('${page.slug}')"><img src = "${getFeaturedImageUrl(page)}"></a>
   `;
 }
 
@@ -89,11 +89,6 @@ function addMenuItem(page) {
 function addPage(page) {
     document.querySelector("#pages").innerHTML += `
   <section id="${page.slug}" class="page">
-    <header class="topbar">
-    <a href="index.html#forside">
-    <img src = "img/nubio-logo.svg">
-    </a>
-    </header>
     ${page.content.rendered}
   </section>
   `;
@@ -102,11 +97,6 @@ function addPage(page) {
 function addCategory(category) {
     document.querySelector("#pages").innerHTML += `
   <section id="${category.slug}" class="page">
-    <header class="topbar">
-    <a href="index.html#forside">
-    <img src = "img/nubio-logo.svg">
-    </a>
-    </header>
     <section class="container"></section>
   </section>
   `;
