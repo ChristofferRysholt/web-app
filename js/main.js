@@ -59,7 +59,7 @@ function appendPages(pages) {
         addMenuItem(page);
         addPage(page);
     }
-    setDefaultPage(pages[0].slug); // selecting the first page in the array of pages
+    setDefaultPage("forside"); // selecting the first page in the array of pages
     getMovies();
     getCategories();
 }
@@ -119,39 +119,47 @@ function appendMovies(movies) {
     for (let movie of movies) {
         console.log();
         htmlTemplate += `
-<div class="flip-container" onclick="this.classList.toggle('click');">
-<div class="flipper">
-      <article class="front">
-<img src = "${getFeaturedImageUrl(movie)}">
-        <h3>${movie.title.rendered}</h3>
-        <h5>${movie.acf.subtitle}</h5>
-<div class="fronttitle">
-</div>
-</article>
-      <article class="back">
-<section class="secwhite">
-        <iframe width="100% auto" height="auto" frameborder="0" allowfullscreen="allowfullscreen" gyroscope; picture-in-picture"
-          src="https://youtube.com/embed/${movie.acf.trailer}">
-        </iframe>
-<div class="fronttit">
-        <h3>${movie.title.rendered}</h3>
-        <h5>${movie.acf.genre}</h5>
-</div>
-<p>${movie.acf.description}</p>
+        <div class="flip-container" onclick="this.classList.toggle('click');">
+        <div class="flipper">
+        <article class="front">
+          <img src = "${getFeaturedImageUrl(movie)}">
+          <h3>${movie.title.rendered}</h3>
+          <h5>${movie.acf.subtitle}</h5>
+          <div class="fronttitle"></div>
+        </article>
+        <article class="back">
+          <section class="secwhite">
+            <iframe width="100% auto" height="auto" frameborder="0" allowfullscreen="allowfullscreen" gyroscope; picture-in-picture"
+              src="https://youtube.com/embed/${movie.acf.trailer}">
+            </iframe>
+              <div class="fronttit">
+                <h3>${movie.title.rendered}</h3>
+                <h5>${movie.acf.genre}</h5>
+              </div>
+              <p>${movie.acf.description}</p>
+              <p id="demo"></p>
         </section>
         <section class="backbutt">
-<h4>FAKTA</h4>
-<h4>MEDVIRKENDE</h4>
-<h4>ANMELDELSER</h4>
-<h4>BILLETTER</h4>
-</section>
-      </article>
+          <button onclick="showFakta">FAKTA</button>
+
+          <p id="demo"></p>
+
+          <h4>MEDVIRKENDE</h4>
+          <h4>ANMELDELSER</h4>
+          <h4>BILLETTER</h4>
+        </section>
+        </article>
         </div>
         </div>
     `;
     }
     document.querySelector("#forside").innerHTML += htmlTemplate;
 }
+
+function showFakta() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+
 
 
 // Appends json data to the DOM
@@ -160,33 +168,32 @@ function appendCategoriesMovies(movies, slug) {
     for (let movie of movies) {
         console.log();
         htmlTemplate += `
-<div class="flip-container" onclick="this.classList.toggle('click');">
-<div class="flipper">
-      <article class="front">
-<img src = "${getFeaturedImageUrl(movie)}">
-        <h3>${movie.title.rendered}</h3>
-        <h5>${movie.acf.subtitle}</h5>
-<div class="fronttitle">
-</div>
-</article>
-      <article class="back">
-<section class="secwhite">
-        <iframe width="100% auto" height="auto" frameborder="0" allowfullscreen="allowfullscreen" gyroscope; picture-in-picture"
-          src="https://youtube.com/embed/${movie.acf.trailer}">
-        </iframe>
-<div class="fronttit">
-        <h3>${movie.title.rendered}</h3>
-        <h5>${movie.acf.genre}</h5>
-</div>
-<p>${movie.acf.description}</p>
+        <div class="flip-container" onclick="this.classList.toggle('click');">
+        <div class="flipper">
+        <article class="front">
+          <img src = "${getFeaturedImageUrl(movie)}">
+          <h3>${movie.title.rendered}</h3>
+          <h5>${movie.acf.subtitle}</h5>
+          <div class="fronttitle"></div>
+        </article>
+        <article class="back">
+          <section class="secwhite">
+            <iframe width="100% auto" height="auto" frameborder="0" allowfullscreen="allowfullscreen" gyroscope; picture-in-picture"
+              src="https://youtube.com/embed/${movie.acf.trailer}">
+            </iframe>
+              <div class="fronttit">
+                <h3>${movie.title.rendered}</h3>
+                <h5>${movie.acf.genre}</h5>
+              </div>
+              <p>${movie.acf.description}</p>
         </section>
         <section class="backbutt">
-<h4>FAKTA</h4>
-<h4>MEDVIRKENDE</h4>
-<h4>ANMELDELSER</h4>
-<h4>BILLETTER</h4>
+          <h4>FAKTA</h4>
+          <h4>MEDVIRKENDE</h4>
+          <h4>ANMELDELSER</h4>
+          <h4>BILLETTER</h4>
         </section>
-      </article>
+        </article>
         </div>
         </div>
     `;
