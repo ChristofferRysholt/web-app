@@ -81,7 +81,7 @@ function addMenuItem(page) {
 // appends menu item to the nav menu
 function addMenuItem(page) {
     document.querySelector(".topbar").innerHTML += `
-  <a href="#${page.slug}" onclick="showPage('${page.slug}')"><img src = "${getFeaturedImageUrl(page)}"></a>
+  <a href="#${page.slug}" onclick="showPage('${page.slug}')"><img src ="${getFeaturedImageUrl(page)}"></a>
   `;
 }
 

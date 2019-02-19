@@ -215,45 +215,6 @@ img {
     margin-top: .4em;
 }
 
-/* ---------- tabbar styling ---------- */
-
-.tabbar {
-    background-image: var(--green);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    border-top: solid black 2px;
-}
-
-/* Style the links inside the navigation bar */
-
-.tabbar a {
-    display: inline-block;
-    color: var(--text-color-light);
-    text-align: center;
-    padding: 20px 16px;
-    text-decoration: none;
-    font-size: 0.8em;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-/* Change the color of links on hover */
-
-.tabbar a:hover {
-    background-color: var(--light-grey);
-    color: var(--text-color-dark);
-}
-
-/* Add a color to the active/current link */
-
-.tabbar a.active {
-    background-color: var(--light-green);
-    color: var(--text-color-light);
-}
-
 /* ---------- page styling ---------- */
 
 .page {
@@ -401,6 +362,13 @@ h3 {
 .back {
     transform: rotateY(180deg);
 }
+/* ---------- support ------------ */
+@supports(-webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%)) or (clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%)) {
+    .message {
+        display: none;
+    }
+}
+
 
 /* ---------- animations ---------- */
 
