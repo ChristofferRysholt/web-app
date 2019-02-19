@@ -2,39 +2,41 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>SINGLE PAGE WEB APP TEMPLATE</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Get started with HTML, CSS and JavaScript">
-  <meta name="author" content="Rasmus Cederdorff">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <meta charset="utf-8">
+    <title>Se hvad der vises nu i bio - NuBio.dk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Hvad kører i biografen lige nu? Få inspiration her.">
+    <meta name="author" content="NUBIO.dk">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
 </head>
 
 <body onload="myFunction()" style="margin:0;">
-  <div id="loader"></div>
-<div style="display:none;" id="myDiv" class="animate-bottom">
- </div>
- 
-     <div class='container example-one'>
-         <header class='example-one-header scroll'>
-             <nav class='vertical-align-middle'>
-                 <span class='nav-item caractive'>Nyeste film</span>
-                 <span class='nav-item'>Brugernes favoritter</span>
-                 <span class='nav-item'>Vores favoritter</span>
-                 <span class='nav-item'>IMDB favoritter</span>
-                 <span class='nav-item'>Stopper snart</span>
-                 <span class='nav-item'>Kommer snart</span>
-             </nav>
-         </header>
-     </div>
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+    </div>
 
-  <!-- tabbar navigation -->
-  <nav id="menu" class="tabbar"></nav>
-  <!-- pages -->
-  <main id="pages"></main>
-  <!-- main js file -->
-  <script src="js/main.js"></script>
+    <div class='container example-one'>
+        <header class='example-one-header'>
+            <span class="genre"><a href="index.html#genrer">Vælg genre</a></span>
+            <nav class='vertical-align-middle scroll'>
+                <span class='nav-item caractive'>Nyeste film</span>
+                <span class='nav-item'>Brugernes favoritter</span>
+                <span class='nav-item'>Vores favoritter</span>
+                <span class='nav-item'>IMDB favoritter</span>
+                <span class='nav-item'>Stopper snart</span>
+                <span class='nav-item'>Kommer snart</span>
+            </nav>
+        </header>
+    </div>
+
+    <!-- tabbar navigation -->
+    <nav id="menu" class="tabbar"></nav>
+    <!-- pages -->
+    <main id="pages"></main>
+    <!-- main js file -->
+
 </body>
 
 </html>

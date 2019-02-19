@@ -1,68 +1,98 @@
 /* ---------- root variables ---------- */
+
 :root {
-  --background-dark: rgb(30,30,30);
-  --top-color: linear-gradient(to right, crimson, crimson, #720000);
-  --green: crimson;
-  --light-green: rgb(10,10,10);
-  --light-grey: #f1f1f4;
-  --text-color-light: #f1f1f1;
-  --text-color-dark: #333;
+    --background-dark: rgb(30, 30, 30);
+    --top-color: linear-gradient(to right, crimson, crimson, #720000);
+    --green: linear-gradient(to right, black, black);
+    --light-green: rgb(75, 0, 0);
+    --light-grey: #f1f1f4;
+    --text-color-light: #f1f1f1;
+    --text-color-dark: #333;
 }
 
 /* ---------- spinner --------------- */
+
 /* Center the loader */
+
 #loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid crimson;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid crimson;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Add animation to "page content" */
+
 .animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
 }
 
 @-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 }
-  to { bottom:0px; opacity:1 }
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
 }
 
 @keyframes animatebottom {
-  from{ bottom:-100px; opacity:0 }
-  to{ bottom:0; opacity:1 }
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
 }
 
 #myDiv {
-  display: none;
-  text-align: center;
+    display: none;
+    text-align: center;
 }
-/* Carrausel */
 
+/* Collap */
+
+[data-collapsible-set="foo"] .collapsible-content {
+    margin-bottom: 0;
+}
+
+/* Carrausel */
 
 .scroll {
     white-space: nowrap;
@@ -71,14 +101,27 @@
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
-.example-one-header {
-    border-radius: 3px;
+.example-one-header .genre {
+    width: 25%;
+    float: left;
+    margin-top: 4.25em;
+    text-align: left;
+    font-size: .75em;
+}
+
+.genre a {
+    color: #e34666;
+    text-decoration: none;
+}
+
+.example-one-header nav {
+    width: 74%;
 }
 
 .nav-item {
-    padding: 1em 1.2em 1em 1.2em;
-    margin-top: 2.87em;
-    color: #999;
+    padding: 1em 1.2em .8em 1.2em;
+    margin-top: 2.6em;
+    color: rgb(167, 167, 167);
 }
 
 .nav-item:hover {
@@ -90,14 +133,15 @@
     color: #fff;
 }
 
+.genre,
 .nav-item {
     text-align: left;
     padding-top: 1.7em;
-    padding-bottom: -2em;
-    font-size: 1.1em;
+    font-size: 1em;
     text-transform: uppercase;
 }
 
+.genre,
 .nav-item,
 .vertical-align-middle {
     display: inline-block;
@@ -111,132 +155,350 @@
 
 
 /* ---------- general styling ---------- */
+
 html {
-  color: var(--text-color-light);
-  font-family: Helvetica, Arial, sans-serif;
-  height: 100%;
-  text-align: center;
-  width: 100%;
-  font-weight: 200;
+    color: var(--text-color-light);
+    font-family: Helvetica, Arial, sans-serif;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+    font-weight: 200;
 }
 
 body {
-  background-color: rgb(30,30,30);
-  margin: 0 auto;
+    background-color: rgb(30, 30, 30);
+    margin: 0 auto;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+#genrer h3 {
+    color: #dedede;
 }
 
 h1 {
-  font-size: 2em;
-  font-weight: 300;
-  letter-spacing: 3px;
+    font-size: 2em;
+    font-weight: 300;
+    letter-spacing: 3px;
 }
 
 img {
-  max-width: 100%;
-  width: 100%;
+    max-width: 100%;
+    width: 100%;
 }
 
 /* ---------- topbar styling ---------- */
+
 .topbar {
-  background-image: var(--top-color);
-  color: var(--text-color-light);
-  padding: 13.5px;
-  text-transform: uppercase;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
+    background-image: var(--top-color);
+    color: var(--text-color-light);
+    text-transform: uppercase;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    border-bottom: dotted #720000 2px;
 }
 
 .topbar h2 {
-  margin: 0;
-  font-weight: 300;
+    color: rgba(173, 17, 48, 0);
+    margin: 0;
+    font-weight: 300;
+}
+
+.topbar img {
+    width: 30%;
+    padding: .6em;
+    margin-top: .4em;
 }
 
 /* ---------- tabbar styling ---------- */
+
 .tabbar {
-  background-color: var(--green);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
+    display: none;
+    background-image: var(--green);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    border-top: solid black 2px;
 }
 
 /* Style the links inside the navigation bar */
+
 .tabbar a {
-  display: inline-block;
-  color: var(--text-color-light);
-  text-align: center;
-  padding: 20px 16px;
-  text-decoration: none;
-  font-size: 0.8em;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+    display: inline-block;
+    color: var(--text-color-light);
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 /* Change the color of links on hover */
+
 .tabbar a:hover {
-  background-color: var(--light-grey);
-  color: var(--text-color-dark);
+    background-color: var(--light-grey);
+    color: var(--text-color-dark);
 }
 
 /* Add a color to the active/current link */
+
 .tabbar a.active {
-  background-color: var(--light-green);
-  color: var(--text-color-light);
+    background-color: var(--light-green);
+    color: var(--text-color-light);
 }
 
 /* ---------- page styling ---------- */
+
 .page {
-  display: none;
-  /*min heigh is screen heigh minus height of tab and top bar */
-  min-height: calc(100vh - 110px);
-  background: var(--background-dark);
-  animation: fadeIn 0.4s;
-  /* padding equals height of tabbar and topbar */
+    display: none;
+    /*min heigh is screen heigh minus height of tab and top bar */
+    min-height: calc(100vh - 110px);
+    background: var(--background-dark);
+    animation: fadeIn 0.4s;
+    /* padding equals height of tabbar and topbar */
 }
 
 /* ---------- logo styling ---------- */
+
 .logo {
-  margin: 2em auto;
-  width: 100%;
-  max-width: 300px;
+
+    color: white;
+    width: 100%;
+    max-width: 300px;
 }
 
-.trailer_yt {
-  width: 100% auto;
+/* --- flipper */
+
+/* entire container, keeps perspective */
+
+.back p {
+    text-align: left;
+    font-size: 1em;
+    color: black;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-weight: 300;
+}
+
+h3 {
+    color: black;
+    margin-top: .4em;
+    font-size: 1.5em;
+    font-weight: 200;
+}
+
+.front h5 {
+    color: #696969;
+    font-weight: 100;
+    margin-top: -1.7em;
+}
+
+.back h5 {
+    margin-top: -1.4em;
+    color: grey;
+    font-weight: 100;
+}
+
+
+.backbutt h4 {
+    background: rgb(208, 208, 208);
+    color: black;
+    padding: .55em;
+    font-size: 1em;
+    text-align: center;
+    margin: 0 auto;
+    border-top: solid white 2px;
+    font-weight: 200;
+}
+
+
+.backbutt h4:hover {
+    background: rgb(180, 180, 180);
+    cursor: pointer;
+}
+
+
+/* flip the pane when hovered */
+
+.flip-container:active .flipper,
+.flip-container.click .flipper {
+    transform: rotateY(180deg);
+}
+
+
+.flip-container,
+.front,
+.back {
+    width: 100%;
+    height: 35.5em;
+    margin-bottom: 1em;
+}
+
+.backbutt h4.buy {
+    border-top: solid white 2px;
+    background: crimson;
+    color: white;
+    letter-spacing: 1.1px;
+}
+
+.backbutt h4.buy:hover {
+    background: #c40d32;
+}
+
+.front {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background-color: white;
+}
+
+.back {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background-color: white;
+    width: 100%;
+    position: relative;
+}
+
+.backbutt {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+/* flip speed goes here */
+
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* hide back of pane during swap */
+
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+
+.back {
+    transform: rotateY(180deg);
 }
 
 /* ---------- animations ---------- */
+
 /* fade in */
+
 @keyframes fadeIn {
-  from {
-    opacity: 0
-  }
+    from {
+        opacity: 0
+    }
 
-  to {
-    opacity: 1
-  }
+    to {
+        opacity: 1
+    }
 }
+
+@media only screen and (min-width: 700px) {
+    #forside {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 1%;
+    }
+
+    .example-one-header {
+        font-size: 1.2em;
+    }
+
+    .flip-container,
+    .front,
+    .back {
+        height: 27.5em;
+    }
+
+    article {
+        display: grid;
+        color: black;
+    }
+
+    .back p {
+        margin: 0 auto;
+        text-align: left;
+        font-size: 0.9em;
+    }
+
+    .back h3 {
+        margin: .6em 0 0 0;
+        font-size: 1.3em;
+        color: crimson;
+        font-weight: 200;
+    }
+
+    .back h5 {
+        margin: 0 auto;
+        color: grey;
+        font-weight: 100;
+    }
+
+    .backbutt h4 {
+        padding: .5em;
+        font-size: .9em;
+        margin: 0 auto;
+    }
+
+    .topbar img {
+        width: 10%;
+        padding: 1em;
+        margin-top: .3em;
+    }
+
+}
+
 @media only screen and (min-width: 1000px) {
- #forside {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    grid-gap: 2%;
-  }
+    #forside {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 1%;
+    }
 
-  .container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-gap: 2%;
-    padding-left: 0.5%;
-    padding-right: 0.5%;
 
-  }
+    .flip-container,
+    .front,
+    .back {
+        height: 32.5em;
+    }
 
-  /*
+    .container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+    }
+
+    .back h3 {
+        font-size: 1.4em;
+    }
+
+    .back p {
+        font-size: .95em;
+    }
+
+
+    /*
  .grid-posters{
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -245,8 +507,7 @@ img {
     padding-right: 0.5%;
   }
 */
-  article {
-    display: grid;
-    background-color: white;
-    color: black;
-  }
+    article {
+        display: grid;
+        color: black;
+    }
