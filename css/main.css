@@ -2,7 +2,8 @@
 
 :root {
     --background-dark: rgb(30, 30, 30);
-    --top-color: linear-gradient(to right, crimson, crimson, #720000);
+    --top-color: linear-gradient(to right, #720000, crimson, crimson, #720000);
+    --top-color-desk: linear-gradient(to right, crimson, crimson, #720000);
     --green: linear-gradient(to right, black, black);
     --light-green: rgb(75, 0, 0);
     --light-grey: #f1f1f4;
@@ -101,27 +102,26 @@
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
-.example-one-header .genre {
-    width: 25%;
-    float: left;
-    margin-top: 4.25em;
-    text-align: left;
-    font-size: .75em;
+.example-one {
+    margin-bottom: .3em;
 }
 
-.genre a {
-    color: #e34666;
-    text-decoration: none;
+.example-one-header .genre {
+    width: 34%;
+    float: left;
+    margin-top: 2.6em;
+    text-align: left;
 }
 
 .example-one-header nav {
-    width: 74%;
+    width: 66%;
 }
 
 .nav-item {
     padding: 1em 1.2em .8em 1.2em;
-    margin-top: 2.6em;
+    margin-top: 3.1em;
     color: rgb(167, 167, 167);
+    font-size: .9em;
 }
 
 .nav-item:hover {
@@ -137,7 +137,6 @@
 .nav-item {
     text-align: left;
     padding-top: 1.7em;
-    font-size: 1em;
     text-transform: uppercase;
 }
 
@@ -146,6 +145,27 @@
 .vertical-align-middle {
     display: inline-block;
     vertical-align: middle;
+}
+
+.genre a {
+    font-family: "Arial", sans-serif;
+    border: solid rgb(118, 118, 118) 1px;
+    border-radius: 2px;
+    font-size: .62em;
+    letter-spacing: .7px;
+    color: #e5e5e5;
+    padding: .8em;
+    text-decoration: none;
+    font-weight: 100;
+}
+
+.genre a:hover {
+    color: #f8254f;
+    border: solid crimson 1px;
+}
+
+.example-one .genre {
+    margin-top: 2.45em;
 }
 
 .scroll::-webkit-scrollbar {
@@ -168,12 +188,25 @@ html {
 body {
     background-color: rgb(30, 30, 30);
     margin: 0 auto;
-    padding-left: 4%;
-    padding-right: 4%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 #genrer h3 {
-    color: #dedede;
+    color: white;
+    padding-bottom: .02em;
+    padding-top: .3em;
+    font-weight: 100;
+}
+
+#genrer article {
+    width: 100%;
+    border-bottom: dotted #2e2e2e 1px;
+    cursor: pointer;
+}
+
+#genrer article:hover {
+    background: #2e2e2e;
 }
 
 h1 {
@@ -190,17 +223,19 @@ img {
 /* ---------- topbar styling ---------- */
 
 .topbar {
-    background-color: crimson;
+    background-image: var(--top-color);
     color: var(--text-color-light);
     text-transform: uppercase;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    border-bottom: dotted #720000 2px;
+    height: 3.3em;
+    border-bottom: dotted #720000 1px;
 }
+
 .topbar a {
-  position: relative;
+    position: relative;
 }
 
 .topbar h2 {
@@ -210,7 +245,7 @@ img {
 }
 
 .topbar img {
-    width: 30%;
+    width: 6.6em;
     padding: .6em;
     margin-top: .4em;
 }
@@ -241,7 +276,7 @@ img {
 
 .back p {
     text-align: left;
-    font-size: 1em;
+    font-size: 1.13em;
     color: black;
     padding-left: 1em;
     padding-right: 1em;
@@ -250,29 +285,46 @@ img {
 
 h3 {
     color: black;
-    margin-top: .4em;
+    margin-top: .5em;
     font-size: 1.5em;
-    font-weight: 200;
+}
+
+.front h3 {
+    color: black;
+    font-weight: 400;
+}
+
+h5 {
+    color: #393939;
 }
 
 .front h5 {
-    color: #696969;
     font-weight: 100;
-    margin-top: -1.7em;
+    margin-top: -1.5em;
+    margin-bottom: .8em;
 }
+
+
+.back h3 {
+    color: crimson;
+    text-transform: capitalize;
+    font-size: 1.4em;
+    font-weight: 400;
+}
+
 
 .back h5 {
     margin-top: -1.4em;
-    color: grey;
+    color: #7b7b7b;
     font-weight: 100;
-}
 
+}
 
 .backbutt h4 {
     background: rgb(208, 208, 208);
     color: black;
     padding: .55em;
-    font-size: 1em;
+    font-size: 1.1em;
     text-align: center;
     margin: 0 auto;
     border-top: solid white 2px;
@@ -293,13 +345,42 @@ h3 {
     transform: rotateY(180deg);
 }
 
-
 .flip-container,
 .front,
 .back {
+    height: 39em;
     width: 100%;
-    height: 35.5em;
     margin-bottom: 1em;
+}
+
+
+/*
+.front {
+    border: solid white 2px;
+}
+
+.back {
+    border: solid white 2px;
+}
+*/
+
+.front1 {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 89%;
+}
+
+.front2 {
+    background: rgb(208, 208, 208);
+    width: 100%;
+    min-height: 3.08em;
+    position: absolute;
+    bottom: 0;
+}
+
+.front2 h3 {
+    text-transform: capitalize;
 }
 
 .backbutt h4.buy {
@@ -315,14 +396,16 @@ h3 {
 
 .front {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    background-color: white;
+    cursor: pointer;
 }
+
 
 .back {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     background-color: white;
     width: 100%;
     position: relative;
+    cursor: pointer;
 }
 
 .backbutt {
@@ -334,7 +417,7 @@ h3 {
 /* flip speed goes here */
 
 .flipper {
-    transition: 0.6s;
+    transition: 0.5s;
     transform-style: preserve-3d;
     position: relative;
 }
@@ -343,7 +426,7 @@ h3 {
 
 .front,
 .back {
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
@@ -362,7 +445,9 @@ h3 {
 .back {
     transform: rotateY(180deg);
 }
+
 /* ---------- support ------------ */
+
 @supports(-webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%)) or (clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%)) {
     .message {
         display: none;
@@ -388,17 +473,39 @@ h3 {
     #forside {
         display: grid;
         grid-template-columns: auto auto auto;
-        grid-gap: 1%;
+        grid-gap: 2%;
     }
 
-    .example-one-header {
-        font-size: 1.2em;
+    .container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 2%;
+    }
+
+    body {
+        background-color: rgb(30, 30, 30);
+        margin: 0 auto;
+        padding-left: 1.5%;
+        padding-right: 1.5%;
+    }
+
+    .topbar {
+        background-image: var(--top-color-desk);
     }
 
     .flip-container,
     .front,
     .back {
-        height: 27.5em;
+        height: 34em;
+        margin-bottom: 0 auto;
+    }
+
+    .example-one .genre {
+        width: 10%;
+    }
+
+    .example-one nav {
+        width: 89%;
     }
 
     article {
@@ -406,23 +513,36 @@ h3 {
         color: black;
     }
 
+    .front {
+        border: solid rgb(208, 208, 208) 2px;
+    }
+
+    .back {
+        border: solid rgb(208, 208, 208) 2px;
+    }
+
+
+    .front h3 {
+        font-size: 1.2em;
+    }
+
+    .front h5 {
+        font-size: .8em;
+    }
+
     .back p {
         margin: 0 auto;
         text-align: left;
-        font-size: 0.9em;
-    }
-
-    .back h3 {
-        margin: .6em 0 0 0;
-        font-size: 1.3em;
-        color: crimson;
-        font-weight: 200;
+        font-size: 1em;
     }
 
     .back h5 {
-        margin: 0 auto;
         color: grey;
         font-weight: 100;
+    }
+
+    .back h3 {
+        font-size: 1.2em;
     }
 
     .backbutt h4 {
@@ -431,31 +551,32 @@ h3 {
         margin: 0 auto;
     }
 
-    .topbar img {
-        width: 10%;
-        padding: 1em;
-        margin-top: .3em;
+    nav {
+        text-align: left;
     }
 
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1200px) {
     #forside {
         display: grid;
         grid-template-columns: auto auto auto auto;
-        grid-gap: 1%;
-    }
-
-
-    .flip-container,
-    .front,
-    .back {
-        height: 32.5em;
     }
 
     .container {
         display: grid;
         grid-template-columns: auto auto auto auto;
+        grid-gap: 2%;
+    }
+
+    .flip-container,
+    .front,
+    .back {
+        margin-bottom: -.2em;
+    }
+
+    .front h3 {
+        font-size: 1.3em;
     }
 
     .back h3 {

@@ -15,6 +15,9 @@ function showPage(pageId) {
     console.log(pageId);
     document.querySelector(`#${pageId}`).style.display = "grid";
     setActiveTab(pageId);
+    if (pageId == "forside") {
+      showAllMovies();
+    }
 }
 
 // set default page
@@ -56,33 +59,12 @@ fetch("http://rysholt.com/wordpress/wp-json/wp/v2/pages?_embed")
 function appendPages(pages) {
     var menuTemplate = "";
     for (let page of pages) {
-        addMenuItem(page);
         addPage(page);
     }
     setDefaultPage("forside"); // selecting the first page in the array of pages
     getMovies();
     getCategories();
-}
-
-/*
-uden forside
-appends menu item to the nav menu
-
-function addMenuItem(page) {
-  console.log(page.slug);
-  if (page.slug != "forside"){
-  document.querySelector("#menu").innerHTML += `
-  <a href="#${page.slug}" onclick="showPage('${page.slug}')">${page.title.rendered}</a>
-  `;
-  }
-}
-*/
-
-// appends menu item to the nav menu
-function addMenuItem(page) {
-    document.querySelector(".topbar").innerHTML += `
-  <a href="#${page.slug}" onclick="showPage('${page.slug}')"><img src ="${getFeaturedImageUrl(page)}"></a>
-  `;
+    getTags();
 }
 
 // appends page section to the DOM
@@ -117,15 +99,16 @@ function getMovies() {
 function appendMovies(movies) {
     let htmlTemplate = "";
     for (let movie of movies) {
-        console.log();
+        console.log(movie);
         htmlTemplate += `
-        <div class="flip-container" onclick="this.classList.toggle('click');">
+        <div class="flip-container tag-${movie.tags[0]}" onclick="this.classList.toggle('click');">
         <div class="flipper">
         <article class="front">
-          <img src = "${getFeaturedImageUrl(movie)}">
-          <h3>${movie.title.rendered}</h3>
-          <h5>${movie.acf.subtitle}</h5>
-          <div class="fronttitle"></div>
+        <div style="background-image:url(${getFeaturedImageUrl(movie)})" class="front1"></div>
+          <div class="front2">
+            <h3>${movie.title.rendered}</h3>
+            <h5>${movie.acf.subtitle}</h5>
+          </div>
         </article>
         <article class="back">
           <section class="secwhite">
@@ -134,19 +117,15 @@ function appendMovies(movies) {
             </iframe>
               <div class="fronttit">
                 <h3>${movie.title.rendered}</h3>
-                <h5>${movie.acf.genre}</h5>
+                <h5>${movie.acf.subtitle}</h5>
               </div>
               <p>${movie.acf.description}</p>
-              <p id="demo"></p>
         </section>
         <section class="backbutt">
-          <button onclick="showFakta">FAKTA</button>
-
-          <p id="demo"></p>
-
+          <h4>FAKTA</h4>
           <h4>MEDVIRKENDE</h4>
           <h4>ANMELDELSER</h4>
-          <h4>BILLETTER</h4>
+          <h4 class="buy">BILLETTER</h4>
         </section>
         </article>
         </div>
@@ -171,10 +150,11 @@ function appendCategoriesMovies(movies, slug) {
         <div class="flip-container" onclick="this.classList.toggle('click');">
         <div class="flipper">
         <article class="front">
-          <img src = "${getFeaturedImageUrl(movie)}">
-          <h3>${movie.title.rendered}</h3>
-          <h5>${movie.acf.subtitle}</h5>
-          <div class="fronttitle"></div>
+        <div style="background-image:url(${getFeaturedImageUrl(movie)})" class="front1"></div>
+          <div class="front2">
+            <h3>${movie.title.rendered}</h3>
+            <h5>${movie.acf.subtitle}</h5>
+          </div>
         </article>
         <article class="back">
           <section class="secwhite">
@@ -183,7 +163,7 @@ function appendCategoriesMovies(movies, slug) {
             </iframe>
               <div class="fronttit">
                 <h3>${movie.title.rendered}</h3>
-                <h5>${movie.acf.genre}</h5>
+                <h5>${movie.acf.subtitle}</h5>
               </div>
               <p>${movie.acf.description}</p>
         </section>
@@ -191,7 +171,7 @@ function appendCategoriesMovies(movies, slug) {
           <h4>FAKTA</h4>
           <h4>MEDVIRKENDE</h4>
           <h4>ANMELDELSER</h4>
-          <h4>BILLETTER</h4>
+          <h4 class="buy">BILLETTER</h4>
         </section>
         </article>
         </div>
@@ -240,7 +220,45 @@ function showCategory(slug, id) {
 }
 
 
+function getTags() {
+    fetch('http://rysholt.com/wordpress/wp-json/wp/v2/tags?_embed')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (tags) {
+            appendTags(tags);
+        });
+}
 
+function appendTags(tags) {
+    let htmlTemplate = "";
+    for (let tag of tags) {
+        console.log(tag);
+      htmlTemplate += `
+        <span class="nav-item" onclick="showTags('${tag.slug}','${tag.id}')">${tag.name}</span>
+    `;
+    }
+    document.querySelector(".vertical-align-middle").innerHTML += htmlTemplate;
+}
+
+  function showTags(slug, id) {
+      console.log(slug, id);
+      let moviesToShow = document.querySelectorAll(`.tag-${id}`)
+        for (let movie of moviesToShow) {
+          movie.style.display = "grid"
+        }
+      let moviesToHide = document.querySelectorAll(`.flip-container:not(.tag-${id})`)
+        for (let movie of moviesToHide) {
+            movie.style.display = "none"
+        }
+    }
+
+    function showAllMovies() {
+      let moviesToShow = document.querySelectorAll(`.flip-container`)
+        for (let movie of moviesToShow) {
+          movie.style.display = "grid"
+        }
+    }
 
 // returns the source url of the featured image of given post or page
 function getFeaturedImageUrl(post) {
