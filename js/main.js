@@ -45,7 +45,7 @@ function setActiveTab(pageId) {
 
 // Fetches pages json data from headless cms
 
-fetch("http://rysholt.com/wordpress/wp-json/wp/v2/pages?_embed")
+fetch("https://rysholt.com/wordpress/wp-json/wp/v2/pages?_embed")
     .then(function (response) {
         return response.json();
     })
@@ -86,7 +86,7 @@ function addCategory(category) {
 
 // Fetches post data from headless cms
 function getMovies() {
-    fetch('http://rysholt.com/wordpress/wp-json/wp/v2/posts?_embed')
+    fetch('https://rysholt.com/wordpress/wp-json/wp/v2/posts?_embed')
         .then(function (response) {
             return response.json();
         })
@@ -182,7 +182,7 @@ function appendCategoriesMovies(movies, slug) {
 }
 
 function getCategories() {
-    fetch('http://rysholt.com/wordpress/wp-json/wp/v2/categories')
+    fetch('https://rysholt.com/wordpress/wp-json/wp/v2/categories')
         .then(function (response) {
             return response.json();
         })
@@ -209,7 +209,7 @@ function showCategory(slug, id) {
     console.log(slug, id);
     showPage(slug);
 
-    fetch('http://rysholt.com/wordpress/wp-json/wp/v2/posts?_embed&categories=' + id)
+    fetch('https://rysholt.com/wordpress/wp-json/wp/v2/posts?_embed&categories=' + id)
         .then(function (response) {
             return response.json();
         })
@@ -221,7 +221,7 @@ function showCategory(slug, id) {
 
 
 function getTags() {
-    fetch('http://rysholt.com/wordpress/wp-json/wp/v2/tags?_embed')
+    fetch('https://rysholt.com/wordpress/wp-json/wp/v2/tags?_embed')
         .then(function (response) {
             return response.json();
         })
